@@ -1,11 +1,14 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import morgan from "morgan";
-import bodyParser from 'body-parser';
-
+import dotenv from "dotenv";
 import { port, dbConnectionString } from "../config.json";
 
-import Routes from './interface/routes.interface';
+import Routes from './interfaces/routes.interface';
+const env = dotenv.config();
+
+console.log(env);
+
 
 export class Application {
 
@@ -19,7 +22,7 @@ export class Application {
     }
 
     public listen() {
-        this.app.listen(this.port, () => {
+        this.app.listen(process.env.PORT || 3000, () => {
             console.log(`App listening on the port ${this.port}`);
         })
     }

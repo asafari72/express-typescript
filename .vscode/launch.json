@@ -5,14 +5,20 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "node",
+            "name": "Launch via NPM",
             "request": "launch",
-            "name": "Launch Program",
-            "program": "${workspaceFolder}/server.ts",
-            "preLaunchTask": "tsc: build - tsconfig.json",
-            "outFiles": [
-                "${workspaceFolder}/dist/**/*.js"
-            ]
+            "runtimeArgs": [
+                "run-script",
+                "dev:debug"
+            ],
+            "runtimeExecutable": "npm",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "pwa-node",
+            "env": {
+                "NODE_ENV": "development"
+            },
         }
     ]
 }

@@ -1,25 +1,8 @@
-import express from 'express';
+import { Application } from './app';
+import MainRoute from './routes/main.routes';
 
-export class Server {
-    // app: express.Application = express();
+const app = new Application([
+    new MainRoute()
+])
 
-    // configurationServer() {
-    //     this.app.use("/", function (req, res) {
-    //         res.sendStatus(200);
-    //     })
-    // }
-
-    // createServer() {
-    //     this.app.listen(3000, function () {
-    //         console.log("server listening on port 3000");
-    //     })
-    //     this.configurationServer();
-
-    // }
-    start() { };
-}
-
-
-const server = new Server();
-
-server.start()
+app.listen()
