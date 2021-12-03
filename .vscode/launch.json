@@ -17,7 +17,7 @@
             ],
             "type": "pwa-node",
             "env": {
-                "NODE_ENV": "development"
+                "NODE_ENV": "develop"
             },
         }
     ]

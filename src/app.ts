@@ -2,31 +2,36 @@ import express from 'express';
 import mongoose from 'mongoose';
 import morgan from "morgan";
 import dotenv from "dotenv";
-import { port, dbConnectionString } from "../config.json";
 
 import Routes from './interfaces/routes.interface';
-const env = dotenv.config();
-
-console.log(env);
+import path from 'path';
 
 
 export class Application {
 
     app: express.Application = express();
-    port: number = port;
+    port: string = '3000';
 
     constructor(routes: Routes[]) {
+        this.envConfig();
         this.initializeMiddlewares();
         this.initializeRoutes(routes);
-        // this.initalizeDataBaseConnection();
+        this.initalizeDataBaseConnection();
     }
 
     public listen() {
-        this.app.listen(process.env.PORT || 3000, () => {
+        this.port = process.env.PORT || '3000';
+        this.app.listen(process.env.PORT, () => {
             console.log(`App listening on the port ${this.port}`);
         })
     }
 
+
+    private envConfig() {
+        const _path = path.resolve(__dirname, `./environment/${process.env.NODE_ENV}.env`)
+        dotenv.config({ path: _path });
+
+    }
     private initializeMiddlewares() {
         this.app.use(morgan("combined"))
         this.app.use(express.json());
@@ -39,7 +44,7 @@ export class Application {
         });
     }
     private initalizeDataBaseConnection() {
-        mongoose.connect(dbConnectionString);
+        mongoose.connect(process.env.DB || "");
     }
 }
 
