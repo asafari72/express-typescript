@@ -5,4 +5,4 @@ const app = new Application([
     new MainRoute()
 ])
 
-app.listen()
+app.listen();
