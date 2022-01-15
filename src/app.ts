@@ -5,7 +5,6 @@ import dotenv from "dotenv";
 
 import Routes from './interfaces/routes.interface';
 import path from 'path';
-import { JResponse } from './middleware/response.middleware';
 
 
 export class Application {
@@ -45,7 +44,8 @@ export class Application {
         });
     }
     private initalizeDataBaseConnection() {
-        mongoose.connect(process.env.DB || "");
+        // initialize database
+        // mongoose.connect(process.env.DB || "");
     }
 }
 
