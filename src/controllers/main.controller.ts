@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { IJResponse, JResponse } from '../middleware/response.middleware';
+import { IJResponse, JResponse } from '../utils/response.middleware';
 
 class MainController {
     public root = async (req: Request, res: Response, next: NextFunction) => {
