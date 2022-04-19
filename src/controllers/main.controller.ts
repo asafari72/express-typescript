@@ -1,15 +1,9 @@
 import { NextFunction, Request, Response } from 'express';
-import { IJResponse, JResponse } from '../utils/response.middleware';
+import { JsonResult } from '../utils/response.middleware';
 
 class MainController {
     public root = async (req: Request, res: Response, next: NextFunction) => {
-        const d: IJResponse = {
-            code: 200,
-            success: true,
-            message: "Application worked!",
-            data: {}
-        }
-        return JResponse(res, d)
+        return new JsonResult(res).send(200, "fuck you", {})
     };
 }
 
