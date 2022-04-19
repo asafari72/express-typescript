@@ -1,12 +1,12 @@
-import {  Response } from "express";
+import { Response } from "express";
 
-export interface IJResponse{
-    success:boolean,
-    message:string,
-    code:number,
-    data:any;
-}
-export function JResponse(res:Response,data:IJResponse){
-    res.status(data.code);
-    return res.send(data)
+export class JsonResult {
+    private _response: any;
+    constructor(response: Response) {
+        this._response = response;
+    }
+    public send(status: number, message: string, data: any) {
+        this._response.status(status);
+        return this._response.send({ status, message, data })
+    }
 }
